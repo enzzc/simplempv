@@ -32,6 +32,7 @@ class Mpv(object):
             buf = self.fd.recv(1024)
         except OSError as e:
             raise SocketError from e
+        print('DEBUG', buf)
         result = json.loads(buf.decode('utf-8'))
         status = result['error']
         if status == 'success': 
@@ -45,5 +46,6 @@ class Mpv(object):
         self.fd.close()
 
     def __getattr__(self, name):
-        return partial(self.command, name)
+        mpv_name = name.replace('_', '-')
+        return partial(self.command, mpv_name)
 

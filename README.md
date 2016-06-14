@@ -22,3 +22,10 @@ mpv.loadfile('/path/to/media') # Load a file and play it
 
 List of input commands: https://mpv.io/manual/stable/#list-of-input-commands
 
+Names containing hyphen must be written with an underscore instead:
+
+```python
+# Mpv name: playlist-next
+mpv.playlist_next()
+```
+
